@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Databases, ID, Query } from "appwrite";
+import { Client, Databases, ID, Query,Storage } from "appwrite";
 
 const {appwriteUrl,appwriteProjectId,appwriteDatabaseId,appwriteCollectionId,appwriteBucketId}  = conf
 
@@ -18,7 +18,7 @@ export class Service {
 
     async getPost(slug) {
         try {
-            return await this.databases.getDocument(appwriteDatabaseId,appwriteCollectionId,appwriteCollectionId,slug)
+            return await this.databases.getDocument(appwriteDatabaseId,appwriteCollectionId,slug)
         } catch (error) {
             console.log('Appwrite service:: getPost():: ',error)
             return false
@@ -26,10 +26,9 @@ export class Service {
     }
 
     // gets all posts that have status active
-    async getPosts() {
-        try {
-            return await this.databases.listDocuments(appwriteDatabaseId,appwriteCollectionId,
-                [Query.equal('status','active')])
+    async getPosts(queries = [Query.equal("status", "active")] ) {
+        try { 
+            return await this.databases.listDocuments(appwriteDatabaseId,appwriteCollectionId,queries)
         } catch (error) {
             console.log('Appwrite service:: getPosts():: ',error)
             return false

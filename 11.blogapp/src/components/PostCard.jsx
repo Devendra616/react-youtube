@@ -1,10 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom '
+import {Link} from 'react-router-dom'
 import appwriteService from '../appwrite/config'
 
 function PostCard({
     $id,title,featuredImage,
-}) {
+}) { console.log(`title is ${title} , fileid is ${featuredImage}`)
   return (
     <Link to={`/post/${$id}`}>
         <div 

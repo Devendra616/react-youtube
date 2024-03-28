@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import authService from '../appwrite/auth'
 import {login as authLogin} from '../store/authSlice'
-
+import {Logo,Input,Button} from './index'
 
 function Login() {
     const navigate = useNavigate()
@@ -15,12 +15,13 @@ function Login() {
     const login = async (data) => {
         setError("")
         try{
-            const session = authService.login(data)
+            const session = await authService.login(data)
             if(session) {
-                const currentUser = authService.getCurrentUser()
+                const currentUser = await authService.getCurrentUser()
+                console.log(JSON.stringify(currentUser))
                 if(currentUser) dispatch(authLogin(currentUser))
 
-                navigate("/all-posts")
+                navigate("/")
             }
         } catch(error) {
             setError(error.message)

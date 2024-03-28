@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Container from '../components/container/Container'
 import appwriteService from '../appwrite/config'
 import Container from '../components/container/Container'
 import PostCard from '../components/PostCard'
@@ -9,7 +8,7 @@ function Home() {
 
   const [posts,setPosts] = useState([])
   useEffect(() => {
-    appwriteService.getPosts()
+    appwriteService.getPosts([])
                     .then( posts => {
                       if(posts) {
                         setPosts(posts.documents)
@@ -22,7 +21,7 @@ function Home() {
       <div className="w-full py-8">
       <Container>
         <div className="flex flex-wrap">
-          <h1>Login to read posts...</h1>
+          <h1>No posts available now...</h1>
         </div>
       </Container>
     </div>

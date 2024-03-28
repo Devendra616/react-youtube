@@ -2,7 +2,7 @@ import React from 'react'
 
 function Logo({width= '100%'}) {
   return (
-    <img src="" alt="Logo Placeholder" style={{width}} />
+    <img src="./logo.jpg" alt="Logo Placeholder" style={{width}} />
   )
 }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Container from '../components/container/Container'
 import appwriteService from '../appwrite/config'
 import Container from '../components/container/Container'
 import PostCard from '../components/PostCard'
@@ -9,7 +8,7 @@ function AllPosts() {
   const [posts,setPosts] = useState([])
   useEffect(() => {
     appwriteService.getPosts()
-                    .then( posts => {
+                    .then( posts => {console.log('from posts in all post')
                       if(posts) {
                         setPosts(posts.documents)
                       }
@@ -27,7 +26,7 @@ function AllPosts() {
     </div>
     )
   }
-
+  
   return (
     <div className="w-full py-8">
       <Container>
